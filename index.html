@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Inventory Management Insights</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0c0c0c, #1a1a1a); 
+      color: #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+      scroll-behavior: smooth;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      background: linear-gradient(to right, #00f0ff, #6f42c1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: center;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #cbd5e1;
+      max-width: 850px;
+      text-align: center;
+      margin-bottom: 30px;
+      line-height: 1.5;
+    }
+
+    video, img {
+      width: 100%;
+      max-width: 1000px;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      margin-bottom: 40px;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .button-group {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    a.download-link {
+      background-color: #00f0ff;
+      color: #0f0f0f;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    a.download-link:hover {
+      background-color: #0ef;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 1rem;
+        padding: 0 10px;
+      }
+
+      .button-group {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Inventory Management Insights</h1>
+  <p>
+    From supply chain to shelf life, every unit is mapped
+    through SQL-refined data and brought to life by Microsoft Excel.
+  </p>
+
+  <video class="fadeable" controls autoplay muted loop>
+    <source src="Visualisation.mov" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <img class="fadeable" src="tabulation1.png" alt="Inventory Table Overview">
+  <img class="fadeable" src="tabulation2.png" alt="">
+  <img class="fadeable" src="tabulation3.png" alt="Trends and Visualizations">
+
+  <div class="button-group">
+    <a href="InventoryDashboard.xlsx" download class="download-link">Download Excel File</a>
+    <a href="Inventory_Management_Report.docx" download class="download-link">Download Full Report</a>
+  </div>
+
+  <script>
+    (() => {
+      const elements = document.querySelectorAll('.fadeable');
+
+      const sectionObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in');
+            sectionObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      elements.forEach(el => sectionObserver.observe(el));
+    })();
+  </script>
+</body>
+</html>
